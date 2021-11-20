@@ -21,46 +21,53 @@
 	<!-- Settings -->
 	<base target="_blank">
   </head>
-  <body class="">
-    <!-- Start your project here-->
+  <body>
     <div class="container-sm">
-	<header class="py-5 text-center text-white">
-		<h1>Weather Dashboard</h1>
-		<p class="lead mb-3">Odessa, Ukraine Weather Forecast and Conditions</p>
-		<p class="last-time-updated">Last time updated at 9:06 am EET</p>
-	</header>
-	<main class="">
-		<section class="card current-condition mb-4 p-4 bg-light">
-			<h2 class="card-title">Current Conditions</h2>
-			<div class="row">
-				<div class="col-6">
-					<span class="temperature display-1">8°</span>
-					<span class="feels-like fs-5">feels like 6°</span>
-					<span class="rain text-muted">2% chance of rain through 10 am</span>
+		<header class="py-5 text-center text-white">
+			<h1>Weather Dashboard</h1>
+			<p class="lead mb-3">Odessa, Ukraine Weather Forecast and Conditions</p>
+			<p id="last_time_updated"></p>
+		</header>
+		<main>
+			<!-- Current Condition -->
+			<section class="card current-condition mb-4 p-4 bg-light">
+				<h2 class="card-title">Current Conditions <a class="ms-1 fs-6 text fw-normal text-black-50 text-decoration-underline" href="https://opensheet.vercel.app/1VNvUUIxn2cvwioMEX30uXqll6sT2MD15qG7JkoHFLig/Current+Conitions">JSON API</a></h2>
+				<div class="row">
+					<div class="col-6">
+						<span id="temperature" class="display-1"></span>
+						<span id="feels_like" class="fs-5"></span>
+						<span id="rain" class="text-muted"></span>
+					</div>
+					<div class="col-6">
+						<span id="symbol" class="display-1"></span>
+						<span id="phrase" class="fs-5"></span>
+						<span id="wind" class="text-muted"></span>
+					</div>
 				</div>
-				<div class="col-6">
-					<span class="symbol display-1">☁️</span>
-					<span class="phrase fs-5">Cloudy (значительная облачность)</span>
-				</div>
-			</div>
-		</section>
-		<section class="card today-forecast">
-			<h2 class="card-title">Today's Forecast</h2>
-			<span class="high-low-temperature">12° / 6°</span>
-		</section>
-		<section class="card hourly-forecast">
-			<h2 class="card-title">Hourly Forecast</h2>
-		</section>
-		<section class="card daily-forecast">
-			<h2 class="card-title">Daily Forecast</h2>
-		</section>
-	</main>
-	<footer class="">Create by <a href="#">ksatico</a></footer>
-    </div>
-    <!-- End your project here-->
+			</section>
+			
+			<!-- Today's Forecast -->
+			<section class="card today-forecast">
+				<h2 class="card-title">Today's Forecast</h2>
+				<span class="high-low-temperature">12° / 6°</span>
+			</section>
+			
+			<!-- Hourly Forecast -->
+			<section class="card hourly-forecast">
+				<h2 class="card-title">Hourly Forecast</h2>
+			</section>
+			
+			<!-- Daily Forecast -->
+			<section class="card daily-forecast">
+				<h2 class="card-title">Daily Forecast</h2>
+			</section>
+		</main>
+		<footer class="">Create by <a href="#">ksatico</a></footer>
+    </div> <!-- .container-sm -->
+	
     <!-- MDB JS -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
-    <!-- Custom JS -->
-    <script type="text/javascript"></script>
+    <!-- Google Sheets Data  -->
+	<script src="gsheet.js"></script>
   </body>
 </html>
