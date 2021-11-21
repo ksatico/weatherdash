@@ -14,8 +14,23 @@
 		body {
 			background-image: linear-gradient(#6e3f98 9%,#d6ab97);
 		}
-		.current-condition span {
+		.current-condition span,
+		.today-forecast span {
 			display: block;
+		}
+		.today-details .list-group-item {
+			position: relative;
+			padding-top: 1rem;
+			padding-right: 0;
+			padding-bottom: 1rem;
+			padding-left: 28px;
+			background-color: inherit;
+		}
+		.today-details .list-group-item i {
+			position: absolute;
+			top: 37%;
+			left: 0;
+			color: #555;
 		}
 	</style>
 	<!-- Settings -->
@@ -32,7 +47,7 @@
 			<!-- Current Condition -->
 			<section class="card current-condition mb-4 p-4 bg-light">
 				<h2 class="card-title">Current Conditions <a class="ms-1 fs-6 text fw-normal text-black-50 text-decoration-underline" href="https://opensheet.vercel.app/1VNvUUIxn2cvwioMEX30uXqll6sT2MD15qG7JkoHFLig/Current+Conitions">JSON API</a></h2>
-				<div class="row">
+				<div class="row mt-3">
 					<div class="col-6">
 						<span id="temperature" class="display-1"></span>
 						<span id="feels_like" class="fs-5"></span>
@@ -47,9 +62,56 @@
 			</section>
 			
 			<!-- Today's Forecast -->
-			<section class="card today-forecast">
-				<h2 class="card-title">Today's Forecast</h2>
-				<span class="high-low-temperature">12° / 6°</span>
+			<section class="card today mb-4 pt-4 px-4 pb-2 bg-light">
+				<h2 class="card-title">Today's Forecast <a class="ms-1 fs-6 text fw-normal text-black-50 text-decoration-underline" href="#s">JSON API</a></h2>
+				<div class="today-forecast row my-4 text-center">
+					<div class="col-3 pb-3 border-end text-body">
+						<h3 class="h5 fw-normal">Morning</h3>
+						<span id="" class="fs-1">9°</span>
+						<span id="" class="fs-1 mb-1">☀️</span>
+						<span id="" class="fs-6"><i class="fs-6 fst-normal">💧</i> 1%</span>
+					</div>
+					<div class="col-3 pb-3 border-end text-muted">
+						<h3 class="h5 fw-normal">Afternoon</h3>
+						<span id="" class="fs-1">11°</span>
+						<span id="" class="fs-1 mb-1">🌤</span>
+						<span id="" class="fs-6"><i class="fs-6 fst-normal">💧</i> 4%</span>
+					</div>
+					<div class="col-3 pb-3 border-end text-muted">
+						<h3 class="h5 fw-normal">Evening</h3>
+						<span id="" class="fs-1">8°</span>
+						<span id="" class="fs-1 mb-1">☁️</span>
+						<span id="" class="fs-6"><i class="fs-6 fw-light fst-normal">💧</i> 10%</span>
+					</div>
+					<div class="col-3 pb-3 text-muted">
+						<h3 class="h5 fw-normal">Overnight</h3>
+						<span id="" class="fs-1">-6°</span>
+						<span id="" class="fs-1 mb-1">🌙</span>
+						<span id="" class="fs-6"><i class="fs-6 fst-normal"></i> --</span>
+					</div>
+				</div>
+				<div class="today-details row row-cols-2 gx-0">
+					<ul class="col list-group list-group-flush pe-5 border-top">	
+						<li class="list-group-item">
+							<i class="fas fa-thermometer-quarter"></i>
+							<p class="mb-0">High / Low <span class="float-end">13° / 5°</span></p>
+						</li>
+						<li class="list-group-item">
+							<i class="fas fa-wind"></i>
+							<p class="mb-0">Wind <span class="float-end">13 km/h</span></p>
+						</li>
+					</ul>
+					<ul class="col list-group list-group-flush ps-5 border-top">	
+						<li class="list-group-item">
+							<i class="fas fa-sun"></i>
+							<p class="mb-0">Sunrise – Sunset <span class="float-end">7:07 – 16:17</span></p>
+						</li>
+						<li class="list-group-item">
+							<i class="fas fa-tint"></i>
+							<p class="mb-0">Humidity <span class="float-end">83%</span></p>
+						</li>
+					</ul>
+				</div>
 			</section>
 			
 			<!-- Hourly Forecast -->
