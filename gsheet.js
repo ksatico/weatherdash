@@ -38,6 +38,29 @@ fetch('https://opensheet.vercel.app/1VNvUUIxn2cvwioMEX30uXqll6sT2MD15qG7JkoHFLig
 	.then(res => res.json())
 	.then(data => {
 		data.forEach(row => {
+			// Detected active column
+			var now = `${row.times_of_day}`;
+			if ( now == 'morning' ) {
+				document.getElementById("morning_data").className += " text-body";
+				document.getElementById("afternoon_data").className += " text-muted";
+				document.getElementById("evening_data").className += " text-muted";
+				document.getElementById("night_data").className += " text-muted";
+			} else if ( now == 'afternoon' ) {
+				document.getElementById("morning_data").className += " text-muted";
+				document.getElementById("afternoon_data").className += " text-body";
+				document.getElementById("evening_data").className += " text-muted";
+				document.getElementById("night_data").className += " text-muted";
+			} else if ( now == 'evening' ) {
+				document.getElementById("morning_data").className += " text-muted";
+				document.getElementById("afternoon_data").className += " text-muted";
+				document.getElementById("evening_data").className += " text-body";
+				document.getElementById("night_data").className += " text-muted";
+			} else if ( now == 'night' ) {
+				document.getElementById("morning_data").className += " text-muted";
+				document.getElementById("afternoon_data").className += " text-muted";
+				document.getElementById("evening_data").className += " text-muted";
+				document.getElementById("night_data").className += " text-body";
+			} else {}
 			
 			// Morning
 			document.getElementById("morning_data").innerHTML = `
