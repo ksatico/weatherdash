@@ -1,21 +1,32 @@
-/* Общая конфигурация для всех скриптов */
+/**
+ * @fileoverview Конфигурация приложения
+ * Содержит все константы и настройки для работы скрипта
+ * @author ksatico
+ * @lastmod 2025-04-13
+ */
 
 const CONFIG = {
-  // Конфигурационные параметры
+  // Основные настройки
   spreadsheetId: "1jtIJvJnngnCw_khmYXa-SdIhJOYbg98V-NDKN86mUZk",
-  sheetNames: {
-    rawData: "RawData",
-    daft: "Daft",
-    share: "Share",
-    log: "Data",
-    areas: ["GalwayCity", "GalwaySuburbs", "GalwayCounty"]
+  timezone: "Europe/Dublin",
+  dateFormat: "dd-MM-yyyy HH:mm:ss",
+
+  // Названия листов
+  sheets: {
+    rawData: "RawData",    // Сырые данные
+    daft: "Daft",          // Форматированные данные
+    share: "Share",        // Результаты парсинга
+    log: "Data",          // Лог и статистика
+    areas: ["GalwayCity", "GalwaySuburbs", "GalwayCounty"]  // Листы с регионами
   },
-  urls: {
-    autocomplete: "https://gateway.daft.ie/old/v1/autocomplete",
-    base: "https://www.daft.ie"
-  },
-  headers: {
-    api: {
+
+  // API настройки
+  api: {
+    urls: {
+      autocomplete: "https://gateway.daft.ie/old/v1/autocomplete",
+      base: "https://www.daft.ie"
+    },
+    headers: {
       "Accept": "application/json",
       "Content-Type": "application/json",
       "brand": "daft",
@@ -23,44 +34,25 @@ const CONFIG = {
       "version": "0",
       "Origin": "https://www.daft.ie",
       "Referer": "https://www.daft.ie/"
-    },
-    sheets: {
-      rawData: ["Area ID", "Area Name", "Area Slug", "Rent", "Share"],
-      share: ["ID", "Address", "Price", "Meta", "Link", "Area ID", "Area Name"]
     }
   },
-  delays: {
-    min: 10000,  // 10 секунд
-    max: 70000   // 70 секунд
-  },
-  // Добавляем новые параметры
-  processing: {
-    batchSize: 5,        // Количество локаций в одной партии
-    maxRunTime: 270000,  // 4.5 минуты в миллисекундах (оставляем запас)
-    stateSheet: "ProcessingState" // Имя листа для хранения состояния обработки
-  }
-};
 
-/* Общие утилиты */
-
-// Форматирование временной метки
-const Utils = {
-  formatTimestamp() {
-    return Utilities.formatDate(
-      new Date(),
-      "Europe/Dublin",
-      "dd-MM-yyyy HH:mm:ss"
-    );
+  // Структура данных
+  dataStructure: {
+    rawData: ["Area ID", "Area Name", "Area Slug", "Rent", "Share"],
+    share: ["ID", "Address", "Price", "Meta", "Link", "Area ID", "Area Name"]
   },
 
-  // Вспомогательная функция для обновления лога
-  updateLog(sheet, column, status, message) {
-    const timestamp = this.formatTimestamp();
-    const logData = [[status], [message], [timestamp]];
-    sheet.getRange(`${column}8:${column}10`).setValues(logData);
-  },
-
-  getRandomDelay() {
-    return Math.floor(Math.random() * (CONFIG.delays.max - CONFIG.delays.min)) + CONFIG.delays.min;
+  // Настройки выполнения
+  execution: {
+    delays: {
+      min: 10000,  // 10 секунд
+      max: 70000   // 70 секунд
+    },
+    batch: {
+      size: 5,              // Количество локаций в одной партии
+      maxRunTime: 270000,   // 4.5 минуты
+      triggerDelay: 60000   // 1 минута между партиями
+    }
   }
 };
